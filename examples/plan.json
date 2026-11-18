@@ -1,0 +1,132 @@
+{
+  "task": "Weekly supplier-invoice run: collect, read, match, chase, pay",
+  "steps": [
+    {
+      "does": "copy this week's invoice PDFs from the shared inbox folder",
+      "wrong_cost": "low",
+      "needs": [],
+      "id": "collect",
+      "lane": "SCRIPT",
+      "why": [
+        "R2"
+      ],
+      "check": "exact"
+    },
+    {
+      "does": "read vendor, invoice number, date, total from PDFs with many layouts",
+      "wrong_cost": "med",
+      "needs": [
+        "collect"
+      ],
+      "id": "extract.shape",
+      "lane": "THINK",
+      "why": [
+        "R3"
+      ],
+      "check": "schema"
+    },
+    {
+      "does": "read vendor, invoice number, date, total from PDFs with many layouts",
+      "wrong_cost": "med",
+      "needs": [
+        "extract.shape"
+      ],
+      "id": "extract.run",
+      "lane": "SCRIPT",
+      "why": [
+        "R3"
+      ],
+      "check": "exact"
+    },
+    {
+      "does": "match each invoice to an open purchase order",
+      "wrong_cost": "med",
+      "needs": [
+        "extract.run"
+      ],
+      "id": "match",
+      "lane": "SCRIPT",
+      "why": [
+        "R2"
+      ],
+      "check": "exact"
+    },
+    {
+      "does": "find out why unmatched invoices do not match (search PO system, past emails)",
+      "wrong_cost": "med",
+      "needs": [
+        "match"
+      ],
+      "id": "chase",
+      "lane": "SCOUT",
+      "why": [
+        "R4"
+      ],
+      "check": "rubric",
+      "budget": {
+        "max_calls": 15,
+        "tools": [
+          "po_search",
+          "mail_search"
+        ]
+      }
+    },
+    {
+      "does": "write a short note for the finance lead",
+      "wrong_cost": "low",
+      "needs": [
+        "chase"
+      ],
+      "id": "summary",
+      "lane": "THINK",
+      "why": [
+        "R5"
+      ],
+      "check": "rubric"
+    },
+    {
+      "does": "schedule payment for matched invoices",
+      "wrong_cost": "high",
+      "needs": [
+        "match"
+      ],
+      "id": "pay",
+      "lane": "SCRIPT",
+      "why": [
+        "R1",
+        "R2"
+      ],
+      "check": "exact",
+      "effect": "external",
+      "gate": "human"
+    },
+    {
+      "does": "email vendors about disputed invoices",
+      "wrong_cost": "high",
+      "needs": [
+        "chase"
+      ],
+      "id": "dispute.decide",
+      "lane": "HUMAN",
+      "why": [
+        "R1"
+      ],
+      "check": "schema",
+      "ask": "Approve or edit the proposed email vendors about disputed invoices"
+    },
+    {
+      "does": "email vendors about disputed invoices",
+      "wrong_cost": "high",
+      "needs": [
+        "dispute.decide"
+      ],
+      "id": "dispute.act",
+      "lane": "SCRIPT",
+      "why": [
+        "R1"
+      ],
+      "check": "exact",
+      "effect": "external"
+    }
+  ]
+}

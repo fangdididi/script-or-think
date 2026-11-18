@@ -1,0 +1,12 @@
+{
+  "task": "Weekly supplier-invoice run: collect, read, match, chase, pay",
+  "steps": [
+    {"id": "collect", "does": "copy this week's invoice PDFs from the shared inbox folder", "inputs": "fixed", "answer": "one", "check": "exact", "wrong_cost": "low", "effect": "local", "path": "fixed"},
+    {"id": "extract", "does": "read vendor, invoice number, date, total from PDFs with many layouts", "inputs": "loose", "answer": "one", "check": "schema", "wrong_cost": "med", "effect": "none", "path": "fixed", "needs": ["collect"]},
+    {"id": "match", "does": "match each invoice to an open purchase order", "inputs": "fixed", "answer": "one", "check": "exact", "wrong_cost": "med", "effect": "none", "path": "fixed", "needs": ["extract"]},
+    {"id": "chase", "does": "find out why unmatched invoices do not match (search PO system, past emails)", "inputs": "loose", "answer": "many", "check": "rubric", "wrong_cost": "med", "effect": "none", "path": "depends", "budget": {"max_calls": 15, "tools": ["po_search", "mail_search"]}, "needs": ["match"]},
+    {"id": "summary", "does": "write a short note for the finance lead", "inputs": "loose", "answer": "many", "check": "none", "wrong_cost": "low", "effect": "none", "path": "fixed", "needs": ["chase"]},
+    {"id": "pay", "does": "schedule payment for matched invoices", "inputs": "fixed", "answer": "one", "check": "exact", "wrong_cost": "high", "effect": "external", "path": "fixed", "needs": ["match"]},
+    {"id": "dispute", "does": "email vendors about disputed invoices", "inputs": "loose", "answer": "many", "check": "none", "wrong_cost": "high", "effect": "external", "path": "fixed", "needs": ["chase"]}
+  ]
+}

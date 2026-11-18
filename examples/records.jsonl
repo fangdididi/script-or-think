@@ -1,0 +1,25 @@
+{"run": "w01", "step": "extract.shape", "lane": "THINK", "in": "a1", "out": "x1", "ok": true}
+{"run": "w01", "step": "match", "lane": "SCRIPT", "in": "m1", "out": "p1", "ok": true}
+{"run": "w01", "step": "chase", "lane": "SCOUT", "trail": ["po_search", "mail_search"], "ok": true}
+{"run": "w01", "step": "summary", "lane": "THINK", "in": "s1", "out": "n1", "ok": true}
+{"run": "w01", "step": "dispute.decide", "lane": "HUMAN", "ok": true, "edited": false}
+{"run": "w02", "step": "extract.shape", "lane": "THINK", "in": "a2", "out": "x2", "ok": true}
+{"run": "w02", "step": "match", "lane": "SCRIPT", "in": "m2", "out": "", "ok": false}
+{"run": "w02", "step": "chase", "lane": "SCOUT", "trail": ["po_search", "mail_search"], "ok": true}
+{"run": "w02", "step": "summary", "lane": "THINK", "in": "s2", "out": "n2", "ok": true}
+{"run": "w02", "step": "dispute.decide", "lane": "HUMAN", "ok": true, "edited": false}
+{"run": "w03", "step": "extract.shape", "lane": "THINK", "in": "a1", "out": "x1", "ok": true}
+{"run": "w03", "step": "match", "lane": "SCRIPT", "in": "m3", "out": "", "ok": false}
+{"run": "w03", "step": "chase", "lane": "SCOUT", "trail": ["po_search", "mail_search"], "ok": true}
+{"run": "w03", "step": "summary", "lane": "THINK", "in": "s3", "out": "n3", "ok": true}
+{"run": "w03", "step": "dispute.decide", "lane": "HUMAN", "ok": true, "edited": true}
+{"run": "w04", "step": "extract.shape", "lane": "THINK", "in": "a2", "out": "x2", "ok": true}
+{"run": "w04", "step": "match", "lane": "SCRIPT", "in": "m4", "out": "p4", "ok": true}
+{"run": "w04", "step": "chase", "lane": "SCOUT", "trail": ["po_search", "mail_search"], "ok": true}
+{"run": "w04", "step": "summary", "lane": "THINK", "in": "s4", "out": "n4", "ok": false}
+{"run": "w04", "step": "dispute.decide", "lane": "HUMAN", "ok": true, "edited": false}
+{"run": "w05", "step": "extract.shape", "lane": "THINK", "in": "a3", "out": "x3", "ok": true}
+{"run": "w05", "step": "match", "lane": "SCRIPT", "in": "m5", "out": "p5", "ok": true}
+{"run": "w05", "step": "chase", "lane": "SCOUT", "trail": ["po_search", "mail_search"], "ok": true}
+{"run": "w05", "step": "summary", "lane": "THINK", "in": "s5", "out": "n5", "ok": true}
+{"run": "w05", "step": "dispute.decide", "lane": "HUMAN", "ok": true, "edited": false}
